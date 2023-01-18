@@ -1,6 +1,7 @@
 #!bin/sh
 
 adduser -D $DB_USER
+adduser -D shrek
 
 sed -i "s|skip-networking||g" /etc/my.cnf.d/mariadb-server.cnf
 echo [mysqld] > /etc/my.cnf.d/exta.cnf
@@ -30,6 +31,7 @@ if [ ! -d "/var/lib/mysql/wordpress" ]; then
         
         mysql -e "CREATE DATABASE $DB_NAME;"
         mysql -e "CREATE USER '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';"
+        mysql -e "CREATE USER '$DB_USER'@localhost IDENTIFIED BY '$DB_PASS';"
         echo GRANT ALL ON '`'$DB_NAME'`'.* TO "'$DB_USER'"@"'%';" | mysql
         mysql -e "FLUSH PRIVILEGES;"
         mysqladmin --socket=/tmp/mysqld.sock -u root password $MYSQL_ROOT_PASSWORD
