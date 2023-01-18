@@ -45,6 +45,7 @@ nginx:
 mariadb:
 	docker build -t m_ariadb --build-arg DB_NAME=wordpress \
 	--build-arg DB_USER=wpuser --build-arg DB_PASS=1234 \
+	--build-arg MYSQL_ROOT_PASSWORD=1234 \
 	srcs/requirements/mariadb/
 
 wordpress:

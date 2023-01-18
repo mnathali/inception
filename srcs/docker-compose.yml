@@ -24,6 +24,7 @@ services:
         DB_NAME: ${DB_NAME}
         DB_USER: ${DB_USER}
         DB_PASS: ${DB_PASS}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     container_name: mariadb
     volumes:
       - db-volume:/var/lib/mysql
